@@ -7,19 +7,25 @@ export const applicationAction = {
     LOGOUT: 'LOGOUT'
 }
 
-export function login(value) {
-    axios.post('/login', value)
-        .then((response) => {
-            if (response.status == 200 && response.data) {
-                dispatch({
-                    type: applicationAction.LOGIN_SUCCESS,
-                    payload: response.data
-                })
-            } else {
-                dispatch({
-                    type: applicationAction.LOGIN_FAILURE,
-                    payload: response.data
-                })
-            }
-        })
+export function login(value, callback) {
+    return function action(dispatch) {
+        dispatch({ type: applicationAction.LOGIN_SUCCESS })
+    }
+    
+    var request = axios.post('/login', value);
+
+    return request.then((response) => {
+        callback(response);
+        if (response.status == 200 && response.data) {
+            dispatch({
+                type: applicationAction.LOGIN_SUCCESS,
+                payload: response
+            })
+        } else {
+            dispatch({
+                type: applicationAction.LOGIN_FAILURE,
+                payload: response
+            })
+        }
+    })
 }

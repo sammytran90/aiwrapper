@@ -27,6 +27,14 @@ mongoose.connect('mongodb://localhost:27017/aidb', { useNewUrlParser: true }, (e
     }
 })
 
+var login = require('./src/server/routers/login');
+var signUp = require('./src/server/routers/signup');
+
+app.use('/login', login);
+app.use('/signup', signUp);
+
+
+
 const PORT = 3000;
 
 app.listen(PORT, () => {

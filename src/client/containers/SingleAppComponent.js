@@ -11,13 +11,15 @@ class SinglePageApp extends Component {
     }
 
     render() {
-        switch (this.props.user.userid) {
-            case '':
+        switch (!this.props.user) {
+            case true:
                 return <LoginPage />
 
             default:
                 return <MainPage />
         }
+        // console.log(this.props);
+        // return (<div>123</div>)
 
     }
 }

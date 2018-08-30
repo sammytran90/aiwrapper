@@ -1,12 +1,12 @@
 import { applicationAction } from '../action/index';
 
-export default function (state = { userid: '', data: null }, action) {
+export default function (state = null, action) {
     switch (action.type) {
         case applicationAction.LOGIN_SUCCESS:
-            state.userid = action.payload.userid;
-            state.data = action.payload.data;
+            return action.payload;
+        // state.data = action.payload.data;
         case applicationAction.LOGIN_FAILURE:
-            state.data = action.payload.data;
+            return null;
     }
     return state;
 }
