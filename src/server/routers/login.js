@@ -9,7 +9,6 @@ router.post('/', (req, res) => {
     sess = req.session;
     var username = req.body.username;
     var password = req.body.password;
-
     var userController = new UserController();
     userController.getByUsernameAndPassword(username, password, (user => {
         if (user) {

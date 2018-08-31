@@ -34,7 +34,6 @@ app.use('/login', login);
 app.use('/signup', signUp);
 
 
-
 const PORT = 3000;
 
 app.listen(PORT, () => {

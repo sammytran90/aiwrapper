@@ -11,25 +11,25 @@ class SinglePageApp extends Component {
     }
 
     render() {
-        switch (!this.props.user) {
-            case true:
-                return <LoginPage />
+        // switch (!this.props.user) {
+        //     case true:
+        return (<LoginPage />)
 
-            default:
-                return <MainPage />
-        }
+        //     default:
+        //         return <MainPage />
+        // }
         // console.log(this.props);
         // return (<div>123</div>)
 
     }
 }
 
-function mapStateToProps({ user }) {
-    return { user };
-}
+// function mapStateToProps({ user }) {
+//     return { user };
+// }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ login: login }, dispatch);
-}
+// function mapDispatchToProps(dispatch) {
+//     return bindActionCreators({ login: login }, dispatch);
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SinglePageApp);
+export default SinglePageApp;

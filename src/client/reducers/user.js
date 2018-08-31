@@ -1,11 +1,12 @@
-import { applicationAction } from '../action/index';
+import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../action/index';
 
 export default function (state = null, action) {
+    console.log("test reducer");
     switch (action.type) {
-        case applicationAction.LOGIN_SUCCESS:
+        case LOGIN_SUCCESS:
             return action.payload;
         // state.data = action.payload.data;
-        case applicationAction.LOGIN_FAILURE:
+        case LOGIN_FAILURE:
             return null;
     }
     return state;
