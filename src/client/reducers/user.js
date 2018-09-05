@@ -1,13 +1,13 @@
-import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../action/index';
+import { GET_USER, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../action/index';
 
 export default function (state = null, action) {
     console.log("test reducer");
     switch (action.type) {
-        case LOGIN_SUCCESS:
+        case 'LOGIN_SUCCESS':
+            console.log("succeed");
             return action.payload;
-        // state.data = action.payload.data;
         case LOGIN_FAILURE:
-            return null;
+            console.log('test');
     }
     return state;
 }

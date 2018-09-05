@@ -12,3 +12,5 @@ class MainPage extends Component {
         )
     }
 }
+
+export default MainPage;

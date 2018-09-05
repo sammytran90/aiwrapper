@@ -12,9 +12,8 @@ router.post('/', (req, res) => {
     var userController = new UserController();
     userController.getByUsernameAndPassword(username, password, (user => {
         if (user) {
-            console.log("user is: ", user);
             sess.user = user;
-            delete (user.password);
+            // delete (user.password);
             res.send(user);
         }
         else {

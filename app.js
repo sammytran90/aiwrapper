@@ -4,6 +4,8 @@ const path = require('path');
 const webpackConfig = require('./webpack.config.js');
 const bodyParser = require('body-parser');
 const express = require('express');
+const session = require('express-session');
+
 const app = express();
 
 const complier = webpack(webpackConfig);
@@ -26,6 +28,14 @@ mongoose.connect('mongodb://localhost:27017/aidb', { useNewUrlParser: true }, (e
         console.log('Error: ', err);
     }
 })
+
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'checking',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}))
 
 var login = require('./src/server/routers/login');
 var signUp = require('./src/server/routers/signup');

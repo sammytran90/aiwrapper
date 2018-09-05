@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { login, loginDispatch } from '../action/index';
+import { getUser } from '../action/index';
 
 class LoginPage extends Component {
     constructor(props) {
@@ -12,11 +12,11 @@ class LoginPage extends Component {
             password: ''
         }
 
-        this.onChage = this.onChage.bind(this);
+        this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-    onChage(field, e) {
+    onChange(field, e) {
         switch (field) {
             case 'username':
                 this.setState({ user: e.target.value });
@@ -28,11 +28,12 @@ class LoginPage extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        var value = {
+        var UserAndPassword = {
             username: this.state.user,
             password: this.state.password
         }
-        this.props.login(value)
+        console.log("submit function");
+        this.props.login(UserAndPassword)
     }
     render() {
         return (
@@ -42,13 +43,13 @@ class LoginPage extends Component {
                     <div className="form-group">
                         <label htmlFor="username" className="col-sm-2 control-label">Username</label>
                         <div className="col-sm-10">
-                            <input key="user" type="text" className="form-control" id="username" placeholder="Username" onChange={this.onChage.bind(this, 'username')} value={this.state.user} />
+                            <input key="user" type="text" className="form-control" id="username" placeholder="Username" onChange={this.onChange.bind(this, 'username')} value={this.state.user} />
                         </div>
                     </div>
                     <div className="form-group">
                         <label htmlFor="inputPassword3" className="col-sm-2 control-label">Password</label>
                         <div className="col-sm-10">
-                            <input key="password" type="password" className="form-control" id="inputPassword3" placeholder="Password" onChange={this.onChage.bind(this, 'password')} value={this.state.password} />
+                            <input key="password" type="password" className="form-control" id="inputPassword3" placeholder="Password" onChange={this.onChange.bind(this, 'password')} value={this.state.password} />
                         </div>
                     </div>
                     <div className="form-group">
@@ -62,10 +63,6 @@ class LoginPage extends Component {
     }
 }
 
-function mapStateToProps({ user }) {
-    return { user };
-}
+var mapDispatchToProps = (dispatch) => bindActionCreators({ login: getUser }, dispatch);
 
-var mapDispatchToProps = (dispatch) => bindActionCreators({ login: login, loginDispatch: loginDispatch }, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+export default connect(null, mapDispatchToProps)(LoginPage);
