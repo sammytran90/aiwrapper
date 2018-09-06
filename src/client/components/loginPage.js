@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getUser } from '../action/index';
+import { getUser } from '../action/user.action';
 
 class LoginPage extends Component {
     constructor(props) {
@@ -32,8 +32,9 @@ class LoginPage extends Component {
             username: this.state.user,
             password: this.state.password
         }
-        console.log("submit function");
-        this.props.login(UserAndPassword)
+
+        this.props.login(UserAndPassword);           
+
     }
     render() {
         return (
