@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Menu from '../containers/menu';
 
 class MainPage extends Component {
     constructor(props) {
@@ -6,9 +7,13 @@ class MainPage extends Component {
 
     }
 
-    render(){
-        return(
-            <div>Main Page</div>
+    render() {
+        return (
+            <div className="container-fluid">
+                <div className="col-xs-4">
+                    <Menu />
+                </div>
+            </div>
         )
     }
 }

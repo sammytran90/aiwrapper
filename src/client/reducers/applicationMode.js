@@ -1,3 +1,5 @@
+import {CHANGE_MODE} from '../action/app.action';
+
 export const intentMode = 'INTENT_MODE';
 export const entitiesMode = 'ENTITIES_MODE';
 

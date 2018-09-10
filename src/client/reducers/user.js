@@ -1,4 +1,4 @@
-import { GET_USER, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../action/index';
+import { GET_USER, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../action/user.action';
 
 export default function (state = null, action) {
     console.log("test reducer");
