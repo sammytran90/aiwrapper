@@ -8,7 +8,9 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema({
     username: { type: String, index: { unique: true } },
     password: { type: String, required: true },
-    create_date: { type: Date, default: Date.now }
+    create_date: { type: Date, default: Date.now },
+    intents: {type: array, },
+    entities: []
 })
 
 // crypt password when saving
