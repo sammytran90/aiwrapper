@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Menu from '../containers/menu';
+import { connect } from 'react-redux';
+import Content from '../containers/content';
 
 class MainPage extends Component {
     constructor(props) {
@@ -9,11 +11,13 @@ class MainPage extends Component {
     render() {
         return (
             <div className="container-fluid">
-                <div className="col-xs-4">
-                    <Menu />
-                </div>
-                <div className="col-xs-8">
-
+                <div className="row">
+                    <div className="col-3">
+                        <Menu />
+                    </div>
+                    <div className="col-9">
+                        <Content />
+                    </div>
                 </div>
             </div>
         )

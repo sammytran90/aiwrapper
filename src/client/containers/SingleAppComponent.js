@@ -5,14 +5,15 @@ import { connect } from 'react-redux';
 import LoginPage from '../components/loginPage';
 import MainPage from '../components/mainPage'
 
+import { loginMode } from '../reducers/applicationMode';
 class SinglePageApp extends Component {
     constructor(props) {
         super(props);
     }
 
     render() {
-        switch (!this.props.user) {
-            case true:
+        switch (this.props.applicationMode) {
+            case loginMode:
                 return (<LoginPage />)
 
             default:
@@ -21,8 +22,8 @@ class SinglePageApp extends Component {
     }
 }
 
-function mapStateToProps({ user }) {
-    return { user };
+function mapStateToProps({ applicationMode }) {
+    return { applicationMode };
 }
 
 export default connect(mapStateToProps)(SinglePageApp);

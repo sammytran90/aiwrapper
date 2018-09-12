@@ -3,13 +3,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getUser } from '../action/user.action';
 
+import { CHANGE_MODE } from '../action/app.action';
+import { loginMode, intentMode, entitiesMode } from '../reducers/applicationMode';
+
 class LoginPage extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             user: '',
-            password: ''
+            password: '',
+            error: ''
         }
 
         this.onChange = this.onChange.bind(this);
@@ -33,7 +37,16 @@ class LoginPage extends Component {
             password: this.state.password
         }
 
-        this.props.login(UserAndPassword);           
+        this.props.login(UserAndPassword, (response) => {
+            if (response.status == 200 && response.data) {
+                dispatch({
+                    type: CHANGE_MODE,
+                    payload: intentMode
+                })
+            } else {
+                this.setState({ error: 'Login failed' });
+            }
+        });
 
     }
     render() {
