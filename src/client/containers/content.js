@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux';
 import { intentMode, entitiesMode } from '../reducers/applicationMode';
 
 //components
-import IntentPage from '../components/contents/intentpage';
-import EntityPage from '../components/contents/entitypage';
+import IntentPage from '../components/contents/intentPage';
+import EntityPage from '../components/contents/entityPage';
 
 class Content extends Component {
     constructor(props) {
@@ -23,7 +23,6 @@ class Content extends Component {
                 return (
                     <div>Cannot access this page's content!! Please sign in!!!</div>
                 );
-
         }
     }
 }

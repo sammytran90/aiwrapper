@@ -1,13 +1,28 @@
-import { GET_USER, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../action/user.action';
+import { FETCH_PROJECT, FETCH_INTENT, FETCH_ENTITY, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../action/user.action';
 
 export default function (state = null, action) {
     console.log("test reducer");
     switch (action.type) {
-        case 'LOGIN_SUCCESS':
-            console.log("succeed");
+        //application access
+        case LOGIN_SUCCESS:
             return action.payload;
         case LOGIN_FAILURE:
-            console.log('test');
+
+        //application data interaction
+        case FETCH_PROJECT:
+            if (state != null) {
+                return state.data.projects.concat()
+            }
+        case FETCH_INTENT:
+            if (state != null) {
+                return state.data.intents.concat(action.payload);
+            }
+        case FETCH_ENTITY:
+            if (state != null) {
+                return state.data.entities.concat(action.payload);
+            }
+
+
     }
     return state;
 }

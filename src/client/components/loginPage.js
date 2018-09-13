@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getUser } from '../action/user.action';
-
+import { getUser, dispatch_msg } from '../action/user.action';
 import { CHANGE_MODE } from '../action/app.action';
-import { loginMode, intentMode, entitiesMode } from '../reducers/applicationMode';
+import { loginMode, projectMode, intentMode, entitiesMode } from '../reducers/applicationMode';
 
 class LoginPage extends Component {
     constructor(props) {
@@ -39,9 +38,9 @@ class LoginPage extends Component {
 
         this.props.login(UserAndPassword, (response) => {
             if (response.status == 200 && response.data) {
-                dispatch({
+                this.props.dispatch_msg({
                     type: CHANGE_MODE,
-                    payload: intentMode
+                    payload: projectMode
                 })
             } else {
                 this.setState({ error: 'Login failed' });
@@ -77,6 +76,6 @@ class LoginPage extends Component {
     }
 }
 
-var mapDispatchToProps = (dispatch) => bindActionCreators({ login: getUser }, dispatch);
+var mapDispatchToProps = (dispatch) => bindActionCreators({ login: getUser, dispatch_msg: dispatch_msg }, dispatch);
 
 export default connect(null, mapDispatchToProps)(LoginPage);

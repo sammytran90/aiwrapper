@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class EntityPage extends Component {
     constructor(props) {
         super(props)
 
+        this.state = {
+            
+        }
     }
 
     render() {
         return (
-            <div>EntityPage</div>
+            <div></div>
         )
     }
 }
 
-export default EntityPage;
+var mapStateToProps = ({ user }) => { return { user } };
+
+export default connect(mapStateToProps)(EntityPage);
