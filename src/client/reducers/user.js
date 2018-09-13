@@ -11,7 +11,11 @@ export default function (state = null, action) {
         //application data interaction
         case FETCH_PROJECT:
             if (state != null) {
-                return state.data.projects.concat()
+                return state.data.projects.concat([{
+                    project_name: action.payload,
+                    intents: [],
+                    entities: []
+                }])
             }
         case FETCH_INTENT:
             if (state != null) {

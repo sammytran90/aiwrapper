@@ -20,8 +20,7 @@ var entitySchema = new Schema({
 })
 
 var projectSchema = new Schema({
-    project_name: { type: String, required: true },
-    create_date: { type: Date, default: Date.now },
+    project_name: { type: String },
     intents: [intentSchema],
     entities: [entitySchema]
 })

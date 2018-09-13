@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import { dispatch_msg } from '../action/user.action';
 
+import { FETCH_PROJECT, FETCH_INTENT, FETCH_ENTITY, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../action/user.action';
+
 class MainPage extends Component {
     constructor(props) {
         super(props)
@@ -25,7 +27,8 @@ class MainPage extends Component {
             this.setState({ error: 'You must input projectname' });
         } else {
             this.props.dispatch_msg({
-                type:
+                type: FETCH_PROJECT,
+                payload: projectName
             })
         }
     }
