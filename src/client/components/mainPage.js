@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 
 import { dispatch_msg } from '../action/user.action';
 
-import { FETCH_PROJECT, FETCH_INTENT, FETCH_ENTITY, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../action/user.action';
+import { CREATE_PROJECT } from '../action/user.action';
 
 class MainPage extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            projects: this.props.data.projects,
+            projects: props.user.data.projects,
             newProjectName: '',
             error: ''
         }
@@ -20,16 +20,20 @@ class MainPage extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
+
     onSubmit(e) {
         e.preventDefault();
         var projectName = this.state.newProjectName;
         if (projectName == '') {
-            this.setState({ error: 'You must input projectname' });
         } else {
             this.props.dispatch_msg({
-                type: FETCH_PROJECT,
+                type: CREATE_PROJECT,
                 payload: projectName
             })
+            this.setState({
+                projects: this.props.user.data.projects
+            })
+
         }
     }
 
@@ -37,24 +41,28 @@ class MainPage extends Component {
         this.setState({ newProjectName: e.target.value })
     }
 
+    fetchProject(projectName) {
+
+    }
     render() {
         return (
             <div>
                 <div>Project Selection</div>
                 <div>
-                    <form class="form-inline" onSubmit={this.onSubmit}>
-                        <div class="form-group mb-2">
-                            <label for="staticEmail2" class="sr-only">Project Name</label>
-                            <input type="text" readonly class="form-control-plaintext" id="staticEmail2" placeholder="Your project name" onChange={this.onChange.bind(this)} value={this.state.newProjectName} />
+                    <form className="form-inline" onSubmit={this.onSubmit}>
+                        <div className="form-group mb-2">
+                            <label htmlFor="staticEmail2" className="sr-only">Project Name</label>
+                            <input key="projectName" type="text" className="form-control-plaintext" id="staticEmail2" placeholder="Your project name" onChange={this.onChange.bind(this)} value={this.state.newProjectName} />
                         </div>
-                        <button type="submit" class="btn btn-primary mb-2">Create</button>
+                        <button type="submit" className="btn btn-primary mb-2">Create</button>
                     </form>
                 </div>
                 <div>
                     <ul>
-                        {this.state.projects.map(v => {
-                            return <li key={v.project_name}>{v.project_name}</li>
-                        })}
+                        {
+                            this.state.projects.map(v => {
+                                return <li key={v.project_name}>{v.project_name}</li>
+                            })}
                     </ul>
                 </div>
             </div>
@@ -63,5 +71,5 @@ class MainPage extends Component {
 }
 
 var mapStateToProps = ({ user }) => { return { user } };
-var mapDispatchToProps = (dispatch) => bindActionCreators({ dispatch_msg: dispatch_msg })
+var mapDispatchToProps = (dispatch) => bindActionCreators({ dispatch_msg: dispatch_msg }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

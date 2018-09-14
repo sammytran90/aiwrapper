@@ -8,7 +8,6 @@ export const entitiesMode = 'ENTITIES_MODE';
 export default function (state = loginMode, action) {
     switch (action.type) {
         case CHANGE_MODE:
-            console.log(action.payload);
             return action.payload;
     }
     return state;
