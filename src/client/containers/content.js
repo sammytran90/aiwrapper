@@ -27,6 +27,6 @@ class Content extends Component {
     }
 }
 
-var mapStateToProps = ({ applicationMode }) => { return { applicationMode } };
+var mapStateToProps = (applicationMode, activeProject) => { return { applicationMode: applicationMode, activeProject: activeProject } };
 
 export default connect(mapStateToProps)(Content);

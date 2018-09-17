@@ -30,7 +30,8 @@ var userSchema = new Schema({
     username: { type: String, index: { unique: true }, required: true },
     password: { type: String, required: true },
     create_date: { type: Date, default: Date.now },
-    projects: [projectSchema]
+    projects: [projectSchema],
+    current_project: { type: String, index: { unique: true }, default: '' }
 })
 
 // crypt password when saving
